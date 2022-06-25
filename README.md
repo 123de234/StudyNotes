@@ -1,5 +1,8 @@
 # StudyNotes 程序员的自我修养
-[toc]
+- [StudyNotes 程序员的自我修养](#studynotes-程序员的自我修养)
+  - [Git](#git)
+  - [Make](#make)
+  - [CPP](#cpp)
 
 ## Git
 - 创建项目
