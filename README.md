@@ -1,9 +1,12 @@
 # StudyNotes 程序员的自我修养
 - [StudyNotes 程序员的自我修养](#studynotes-程序员的自我修养)
+  - [面向过程；面向对象；泛型编程](#面向过程面向对象泛型编程)
   - [Git](#git)
   - [Make](#make)
   - [CPP](#cpp)
   
+## 面向过程；面向对象；泛型编程
+
 ## Git
 
     
@@ -624,7 +627,65 @@
     return 0;
     }
     ```
-
-
-
+    - 友元函数:在类外部有权访问private和protected成员的函数
     
+
+    ```
+    class Box
+    {
+        double width;
+    public:
+        friend void printWidth(Box box);
+        friend class BigBox;
+        void setWidth(double wid);
+    };
+
+    class BigBox
+    {
+    public :
+        void Print(int width, Box &box)
+        {
+            // BigBox是Box的友元类，它可以直接访问Box类的任何成员
+            box.setWidth(width);
+            cout << "Width of box : " << box.width << endl;
+        }
+    };
+
+    // 成员函数定义
+    void Box::setWidth(double wid)
+    {
+        width = wid;
+    }
+
+    // 请注意：printWidth() 不是任何类的成员函数
+    void printWidth(Box box)
+    {
+        /* 因为 printWidth() 是 Box 的友元，它可以直接访问该类的任何成员 */
+        cout << "Width of box : " << box.width << endl;
+    }
+
+    // 程序的主函数
+    int main()
+    {
+        Box box;
+        BigBox big;
+
+        // 使用成员函数设置宽度
+        box.setWidth(10.0);
+
+        // 使用友元函数输出宽度
+        printWidth(box);
+
+        // 使用友元类中的方法设置宽度
+        big.Print(20, box);
+
+        getchar();
+        return 0;
+    }
+    ```
+     - 内联函数：inline
+    
+     - this 指针:
+        1. 每个对象都可以通过this指针访问地址，this指针是所有成员函数的隐含参数
+        2. 指向调用对象
+        
