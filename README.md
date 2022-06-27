@@ -688,4 +688,48 @@
      - this 指针:
         1. 每个对象都可以通过this指针访问地址，this指针是所有成员函数的隐含参数
         2. 指向调用对象
-        
+        3.return this
+    
+
+     - 静态成员函数 
+  
+    ```
+    #include <iostream>
+    using namespace std;
+    
+    class Test
+    {
+        public:
+            Test(int a){ A = a; ++B;}
+            static void smf(Test tt);
+        private:
+            int A;
+            static int B;
+    };
+    
+    void Test::smf(Test tt)
+    {
+        cout << "tt.A : " << tt.A << endl;    //静态成员函数中通过对象来引用非静态成员
+        cout << "Test::B : " << Test::B << endl;
+        cout << "tt.B : " << tt.B << endl;
+    }
+    
+    int Test::B = 0; //静态数据成员初始化的格式<数据类型><类名>::<静态数据成员名>=<值>
+    
+    int main()
+    {
+        Test t1(100);
+        Test t2(200);
+        Test::smf(t1);
+        Test::smf(t2);//静态成员函数调用时不用对象名
+    
+        system("pause");
+        return 0;
+    }
+    ```
+
+    - c++继承：允许我们根据基类定义派生类
+
+    
+
+     
